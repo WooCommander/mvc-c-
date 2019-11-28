@@ -11,12 +11,12 @@ namespace WebApplication1.Controllers
     {
         List<Client> Clients;
         List<Employee> Employees;
+        MyAppContext db;
         public HomeController()
         {
+            db = new MyAppContext();
 
-
-            using (MyAppContext db = new MyAppContext())
-            {
+           
                 //Client client1 = new Client { FIO = "Иванов Иван Иванович", NameCompany = "Восток", Adres = "Ленина 2-А", City = "Тирасполь", Index = 3300, Tel = 053325687 };
                 //Client client2 = new Client { FIO = "Петров Антон Дмитриевич", NameCompany = "МирПК", Adres = "Восстания 56", City = "Тирасполь", Index = 3300, Tel = 0533569874 };
                 //db.Clients.Add(client1);
@@ -42,16 +42,13 @@ namespace WebApplication1.Controllers
                 //    Console.WriteLine(x.FIO, x.Adres, x.Tel, x.NumberOrder);
                 //}
                 //Orders orders1 = new Orders { }
-            }
+            
         }
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Client()
-        {
-            return View();
-        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -64,6 +61,38 @@ namespace WebApplication1.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View(Clients);
+        }
+
+        [HttpGet]
+        public ActionResult Client()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Client(Client client)
+        {
+            db.Clients.Add(client);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+        public ActionResult ViewClients()
+        {
+            return View(Clients);
+        }
+
+        [HttpGet]
+        public ActionResult ViewFor()
+        {
+            String x = "";
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ViewFor(String client)
+        {
+            var x = client;
+
+            return RedirectToAction("Index");
         }
     }
 }

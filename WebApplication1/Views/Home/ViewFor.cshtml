@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+ @model String
+
+@using (Html.BeginForm())
+{
+
+
+    @Html.AntiForgeryToken()
+    <div>введите:</div> @Html.Editor(Model,"xfghdf");
+    <input type="submit" value="Create" class="btn btn-default" />
+
+}
+
+<p>Use this area to provide additional information.</p>

@@ -1,17 +1,27 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "About";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
- @model String
+@model ConsoleAppStart.model.Client
 
 @using (Html.BeginForm())
 {
-
+    /*        public string FIO { get; set; }
+        public string NameCompany { get; set; }
+        public string Adres { get; set; }
+        public int Tel { get; set; }
+        public string City { get; set; }*/
 
     @Html.AntiForgeryToken()
-    <div>введите:</div> @Html.Editor(Model,"xfghdf");
+    
+    <div>введите:</div> <input class="form-control" type="text" name="Model.FIO" value="yyyyyyyy" />
+    <div>введите:</div> <input  class="form-control" type="text" name="test" value="yyyyyyyy" />
+    <div>введите:</div> <input  class="form-control" type="text" name="test" value="yyyyyyyy" />
+
+    <div>введите:</div> <input  class="form-control" type="text" name="test" value="yyyyyyyy" />
     <input type="submit" value="Create" class="btn btn-default" />
 
 }

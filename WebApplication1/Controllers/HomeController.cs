@@ -49,6 +49,11 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+
+
+
+
+       
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -88,9 +93,9 @@ namespace WebApplication1.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult ViewFor(String client)
+        public ActionResult ViewFor(Client model)
         {
-            var x = client;
+            var x = model;
 
             return RedirectToAction("Index");
         }

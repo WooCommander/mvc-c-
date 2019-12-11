@@ -1,35 +1,33 @@
-﻿
-@using ConsoleAppStart.model;
-@model  List<Client>
+﻿@model IEnumerable<ConsoleAppStart.model.Client>
 
 @{
-    ViewBag.Title = "Список клиентов";
+    ViewBag.Title = "Index";
 }
 
-<h2>Список клиентов</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Добавить нового", "Client")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-           ФИО
+            sdfghjkl;
         </th>
         <th>
-          Наименование компании
+            @Html.DisplayNameFor(model => model.NameCompany)
         </th>
         <th>
-          Адресс
+            @Html.DisplayNameFor(model => model.Adres)
         </th>
         <th>
-          Номер телефона
+            @Html.DisplayNameFor(model => model.Tel)
         </th>
         <th>
-           Город
+            @Html.DisplayNameFor(model => model.City)
         </th>
         <th>
-           Индекс
+            @Html.DisplayNameFor(model => model.Index)
         </th>
         <th></th>
     </tr>

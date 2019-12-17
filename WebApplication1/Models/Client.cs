@@ -10,7 +10,7 @@ namespace ConsoleAppStart.model
     public class Client
     {
         public int Id { get; set; }
-        [Column("ФИО")]
+
         public string FIO { get; set; }
         public string NameCompany { get; set; }
         public string Adres { get; set; }

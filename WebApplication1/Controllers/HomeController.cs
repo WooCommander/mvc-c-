@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SortApp.Models;
+using System.Threading.Tasks;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -48,12 +51,7 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-
-
-
-
-
-       
+             
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -99,5 +97,27 @@ namespace WebApplication1.Controllers
 
             return RedirectToAction("Index");
         }
+        public async Task<IActionResult> Index(SortState sortOrder = SortState.NameAsc)
+        {
+            IQueryable<Client> clients = db.Clients.Include(x => x.NameCompany);
+
+            ViewData["NameSort"] = sortOrder == SortState.NameAsc ? SortState.NameDesc : SortState.NameAsc;
+            ViewData["CitySort"] = sortOrder == SortState.CityAsc ? SortState.CityDesc : SortState.CityAsc;
+            ViewData["CompSort"] = sortOrder == SortState.CompanyAsc ? SortState.CompanyDesc : SortState.CompanyAsc;
+
+            clients = sortOrder switch
+            {
+                SortState.NameDesc => clients.OrderByDescending(s => s.Name),
+                SortState.CityAsc => clients.OrderBy(s => s.City),
+                SortState.CityDesc => clients.OrderByDescending(s => s.City),
+                SortState.CompanyAsc => clients.OrderBy(s => s.NameCompany),
+                SortState.CompanyDesc => clients.OrderByDescending(s => s.NameCompany),
+                _ => clients.OrderBy(s => s.Name),
+            };
+            return View(await clients.AsNoTracking().ToListAsync());
     }
+
+
+
+}
 }

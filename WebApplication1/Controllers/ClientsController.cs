@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ConsoleAppStart.model;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -15,9 +16,33 @@ namespace WebApplication1.Controllers
         private MyAppContext db = new MyAppContext();
 
         // GET: Clients
-        public ActionResult Index()
+        public ViewResult Index(SortState sortOrder= SortState.NameAsc, string searchString="")
         {
-            return View(db.Clients.ToList());
+            ViewBag.NameSortParm = sortOrder;
+
+            var clients = from s in db.Clients
+                          select s;
+            switch (sortOrder)
+            {
+                case SortState.NameDesc:
+                    clients = clients.OrderByDescending(s => s.FIO);
+                    break;
+                case SortState.CityAsc:
+                    clients = clients.OrderBy(s => s.City);
+                    break;
+                case SortState.CityDesc:
+                    clients = clients.OrderByDescending(s => s.City);
+                    break;
+                default:
+                    clients = clients.OrderBy(s => s.NameCompany);
+                    break;
+            }
+            if (searchString != "")
+            {
+                clients = clients.Where(item => item.FIO.IndexOf(searchString) != -1);
+            }
+
+            return View(clients.ToList());
         }
 
         // GET: Clients/Details/5

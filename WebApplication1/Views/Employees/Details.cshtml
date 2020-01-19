@@ -10,11 +10,11 @@
 </head>
 <body>
     <div>
-        <h4>Employee</h4>
+        <h4>Информация о работнике</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.FIO)
+                <span>ФИО </span>
             </dt>
     
             <dd>
@@ -22,7 +22,7 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.Adres)
+                <span>Адрес </span>
             </dt>
     
             <dd>
@@ -30,7 +30,7 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.Tel)
+                <span>Номер телефона </span>
             </dt>
     
             <dd>
@@ -38,7 +38,7 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.NumberOrder)
+                <span>Номер заказа </span>
             </dt>
     
             <dd>
@@ -48,8 +48,8 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Изменить", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Назад", "Index")
     </p>
 </body>
 </html>

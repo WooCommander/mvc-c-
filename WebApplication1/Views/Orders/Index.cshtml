@@ -4,33 +4,27 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Заказы</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить новый заказ", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Number)
+            №
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NumberOrder)
+            Номер заказа
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NameOrder)
+           Наименование услуги
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateOrder)
+            Дата
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdEmployee)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdClient)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Srok)
+         <th>
+           Период
         </th>
         <th></th>
     </tr>
@@ -49,19 +43,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.DateOrder)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdEmployee)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdClient)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.Srok)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Изменить", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Подробнее", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

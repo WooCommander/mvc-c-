@@ -4,26 +4,26 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Наши клиенты</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить нового клиента", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>@Html.ActionLink("ФИО", "Index", new { sortOrder = SortState.NameDesc })
-        @Html.ActionLink("ФИО", "Index", new { sortOrder = SortState.NameAsc })
+        <th>@Html.ActionLink("ФИО ↑", "Index", new { sortOrder = SortState.NameDesc })
+        @Html.ActionLink("↓", "Index", new { sortOrder = SortState.NameAsc })
             @*<a asp-action="Index" asp-route-sortOrder="@ViewBag.NameSort">
                 ФИО</a>*@
 </th>
         <th>
-            <a href="/Clients?sortOrder=@SortState.CompanyDesc"> Наименование компании</a><a href="/Clients?sortOrder=@SortState.CompanyAsc"> Наименование компании</a>
+            <a href="/Clients?sortOrder=@SortState.CompanyDesc"> Наименование компании ↑</a><a href="/Clients?sortOrder=@SortState.CompanyAsc"> ↓</a>
 
 
         <th>
         <th>
-            @Html.ActionLink("Город", "Index", new { sortOrder = SortState.CityAsc })
-        @Html.ActionLink("Город", "Index", new { sortOrder = SortState.CityDesc })
+            @Html.ActionLink("Город ↑", "Index", new { sortOrder = SortState.CityAsc })
+        @Html.ActionLink(" ↓", "Index", new { sortOrder = SortState.CityDesc })
     </th>
         
         <th></th>

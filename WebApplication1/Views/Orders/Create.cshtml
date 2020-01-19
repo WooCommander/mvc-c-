@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Создать заказ</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,11 +12,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Orders</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Number, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2">Номер</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NumberOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2">Номер заказа</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NumberOrder, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NumberOrder, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NameOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2">Наименование услуги</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NameOrder, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NameOrder, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DateOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2">Дата заказа </span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DateOrder, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DateOrder, "", new { @class = "text-danger" })
@@ -48,7 +48,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdEmployee, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2">Код работника </span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.IdEmployee, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IdEmployee, "", new { @class = "text-danger" })
@@ -56,7 +56,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdClient, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2">Код клиента</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.IdClient, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IdClient, "", new { @class = "text-danger" })
@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Srok, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="control-label col-md-2">Период</span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Srok, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Srok, "", new { @class = "text-danger" })
@@ -73,14 +73,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Создать" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Назад", "Index")
 </div>
 
 @section Scripts {

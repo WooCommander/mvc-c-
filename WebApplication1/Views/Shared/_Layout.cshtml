@@ -21,11 +21,11 @@
                            </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
-                    <li>@Html.ActionLink("Список пользователей", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Список клиентов", "index", "Clients")</li>
+                    <li>@Html.ActionLink("О нас", "About", "Home")</li>
+                    <li>@Html.ActionLink("Постоянные клиенты", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Клиенты", "index", "Clients")</li>
+                     <li>@Html.ActionLink("Работники", "index", "Employees")</li>
                     <li>@Html.ActionLink("Заказы", "index", "orders")</li>
-                    <li>@Html.ActionLink("Работники", "index", "Employees")</li>
                    
                 </ul>
             </div>
@@ -33,9 +33,9 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year Трайхель Е.А.</p>
         </footer>
     </div>
 

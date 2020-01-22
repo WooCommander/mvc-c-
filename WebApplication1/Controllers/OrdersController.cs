@@ -14,12 +14,12 @@ namespace WebApplication1.Controllers
     {
         private MyAppContext db = new MyAppContext();
         public class ForCreate {
-            public ForCreate(Orders or, Client cl)
+            public ForCreate(Order or, Client cl)
             {
-                orders = or;
+                order = or;
                 client = cl;
             }
-            public Orders orders;
+            public Order order;
             public Client client;
         }
 
@@ -27,7 +27,8 @@ namespace WebApplication1.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            return View(db.Orders.ToList());
+            var orders = db.Orders.Include(p => p.Client).Include(p=>p.Employee);
+            return View(orders.ToList());
         }
 
         // GET: Orders/Details/5
@@ -37,12 +38,12 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Orders orders = db.Orders.Find(id);
-            if (orders == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(orders);
+            return View(order);
         }
 
         // GET: Orders/Create
@@ -58,16 +59,16 @@ namespace WebApplication1.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Number,NumberOrder,NameOrder,DateOrder,IdEmployee,IdClient,Srok")] Orders orders)
+        public ActionResult Create([Bind(Include = "Id,Number,NumberOrder,NameOrder,DateOrder,IdEmployee,IdClient,Srok")] Order order)
         {
             if (ModelState.IsValid)
             {
-                db.Orders.Add(orders);
+                db.Orders.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(orders);
+            return View(order);
         }
 
         // GET: Orders/Edit/5
@@ -77,12 +78,12 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Orders orders = db.Orders.Find(id);
-            if (orders == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(orders);
+            return View(order);
         }
 
         // POST: Orders/Edit/5
@@ -90,15 +91,15 @@ namespace WebApplication1.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Number,NumberOrder,NameOrder,DateOrder,IdEmployee,IdClient,Srok")] Orders orders)
+        public ActionResult Edit([Bind(Include = "Id,Number,NumberOrder,NameOrder,DateOrder,IdEmployee,IdClient,Srok")] Order order)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(orders).State = EntityState.Modified;
+                db.Entry(order).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(orders);
+            return View(order);
         }
 
         // GET: Orders/Delete/5
@@ -108,12 +109,12 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Orders orders = db.Orders.Find(id);
-            if (orders == null)
+            Order order = db.Orders.Find(id);
+            if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(orders);
+            return View(order);
         }
 
         // POST: Orders/Delete/5
@@ -121,8 +122,8 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Orders orders = db.Orders.Find(id);
-            db.Orders.Remove(orders);
+            Order order = db.Orders.Find(id);
+            db.Orders.Remove(order);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

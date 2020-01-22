@@ -13,10 +13,11 @@ namespace ConsoleAppStart.model
         public string Adres { get; set; }
         public int Tel { get; set; }
         public int NumberOrder { get; set; }
-        public ICollection<Orders> Orders { get; set; }
+        public ICollection<Order> Orders { get; set; }
         public Employee()
         {
-            Orders = new List<Orders>();
+            Orders = new List<Order>();
         }
+
     }
 }

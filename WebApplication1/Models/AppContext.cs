@@ -16,7 +16,7 @@ namespace ConsoleAppStart.model
 
         public DbSet<Client> Clients { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet <Orders> Orders { get; set; }
+        public DbSet <Order> Orders { get; set; }
         public DbSet<Contract> Contracts { get; set; }
         public DbSet<Services> Services { get; set; }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppStart.model
 {
-   public class Orders
+   public class Order
     {
         public int Id { get; set; }
         public int Number { get; set; }
@@ -15,10 +15,14 @@ namespace ConsoleAppStart.model
         public DateTime DateOrder { get; set; }
         public int IdEmployee { get; set; }
         public int IdClient { get; set; }
+        public ICollection<Client> Clients { get; set; } 
+        public Client Client { get; set; }
+        public ICollection<Employee> Employees { get; set; }
+        public Employee Employee { get; set; }
         public int Srok { get; set; }
         public ICollection<ServiceOrder> ServiceOrders { get; set; }
         public ICollection<Contract> Contracts { get; set; }
-        public Orders()
+        public Order()
         {
             ServiceOrders = new List<ServiceOrder>();
             Contracts = new List<Contract>();

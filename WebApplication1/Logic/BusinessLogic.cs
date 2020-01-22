@@ -55,6 +55,10 @@ namespace ConsoleAppStart.Logic
             }
 
         }
+        public void Sum (int k)
+        {
+            k = db.Orders.Sum(x => x.Srok);
+        }
        
 
 

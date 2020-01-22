@@ -17,10 +17,12 @@ namespace ConsoleAppStart.model
         public int Tel { get; set; }
         public string City { get; set; }
         public int Index { get; set; }
-        public ICollection<Orders> Orders { get; set; }
+        public ICollection<Order> Orders { get; set; }
         public Client()
         {
-            Orders = new List<Orders>();
+            Orders = new List<Order>();
         }
+
+
     }
 }

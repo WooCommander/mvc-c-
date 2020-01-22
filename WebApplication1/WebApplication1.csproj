@@ -238,11 +238,29 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logic\BusinessLogic.cs" />
+    <Compile Include="Migrations\202001220704062_q.cs" />
+    <Compile Include="Migrations\202001220704062_q.Designer.cs">
+      <DependentUpon>202001220704062_q.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001220722443_q2.cs" />
+    <Compile Include="Migrations\202001220722443_q2.Designer.cs">
+      <DependentUpon>202001220722443_q2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001220730057_q3.cs" />
+    <Compile Include="Migrations\202001220730057_q3.Designer.cs">
+      <DependentUpon>202001220730057_q3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001220752589_q4.cs" />
+    <Compile Include="Migrations\202001220752589_q4.Designer.cs">
+      <DependentUpon>202001220752589_q4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppContext.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\Orders.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\prim.cs" />
     <Compile Include="Models\ServiceOrder.cs" />
     <Compile Include="Models\Services.cs" />
     <Compile Include="Models\SortStatecs.cs" />
@@ -306,7 +324,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -320,6 +337,20 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202001220704062_q.resx">
+      <DependentUpon>202001220704062_q.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001220722443_q2.resx">
+      <DependentUpon>202001220722443_q2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001220730057_q3.resx">
+      <DependentUpon>202001220730057_q3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001220752589_q4.resx">
+      <DependentUpon>202001220752589_q4.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

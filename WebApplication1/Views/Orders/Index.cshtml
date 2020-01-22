@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ConsoleAppStart.model.Orders>
+﻿@model IEnumerable<ConsoleAppStart.model.Order>
 
 @{
     ViewBag.Title = "Index";
@@ -26,6 +26,9 @@
          <th>
            Цена
         </th>
+        
+        <th>имя клиента</th>
+        <th>сотрудник</th>
         <th></th>
     </tr>
 
@@ -46,6 +49,12 @@
        
         <td>
             @Html.DisplayFor(modelItem => item.Srok)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.FIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.FIO)
         </td>
         <td>
             @Html.ActionLink("Изменить", "Edit", new { id=item.Id }) |

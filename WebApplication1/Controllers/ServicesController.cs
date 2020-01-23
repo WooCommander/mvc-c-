@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -10,124 +11,108 @@ using ConsoleAppStart.model;
 
 namespace WebApplication1.Controllers
 {
-    public class OrdersController : Controller
+    public class ServicesController : Controller
     {
         private MyAppContext db = new MyAppContext();
-        public class ForCreate {
-            public ForCreate(Order or, Client cl)
-            {
-                order = or;
-                client = cl;
-            }
-            public Order order;
-            public Client client;
-        }
 
-        private ForCreate forCreate;
-        // GET: Orders
-        public ActionResult Index()
+        // GET: Services
+        public async Task<ActionResult> Index()
         {
-            var orders = db.Orders.Include(p => p.Client).Include(p => p.Employee);
-            return View(orders.ToList());
+            return View(await db.Services.ToListAsync());
         }
 
-        // GET: Orders/Details/5
-        public ActionResult Details(int? id)
+        // GET: Services/Details/5
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Services services = await db.Services.FindAsync(id);
+            if (services == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
+            return View(services);
         }
 
-        // GET: Orders/Create
+        // GET: Services/Create
         public ActionResult Create()
         {
-            //forCreate = new ForCreate (db.Orders,db.Cli );
-            SelectList clients = new SelectList(db.Clients, "Id", "FIO");
-            SelectList emp = new SelectList(db.Employees, "Id", "FIO");
-            ViewBag.Employees = emp;
-            ViewBag.Clients = clients;
             return View();
         }
 
-        // POST: Orders/Create
+        // POST: Services/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Number,NumberOrder,NameOrder,DateOrder,IdEmployee,IdClient,Srok")] Order order)
+        public async Task<ActionResult> Create([Bind(Include = "Id,NameSercvice,PrceService,ServiceCode")] Services services)
         {
             if (ModelState.IsValid)
             {
-                db.Orders.Add(order);
-                db.SaveChanges();
+                db.Services.Add(services);
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(order);
+            return View(services);
         }
 
-        // GET: Orders/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Services/Edit/5
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Services services = await db.Services.FindAsync(id);
+            if (services == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
+            return View(services);
         }
 
-        // POST: Orders/Edit/5
+        // POST: Services/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Number,NumberOrder,NameOrder,DateOrder,IdEmployee,IdClient,Srok")] Order order)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,NameSercvice,PrceService,ServiceCode")] Services services)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(order).State = EntityState.Modified;
-                db.SaveChanges();
+                db.Entry(services).State = EntityState.Modified;
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(order);
+            return View(services);
         }
 
-        // GET: Orders/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Services/Delete/5
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Services services = await db.Services.FindAsync(id);
+            if (services == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
+            return View(services);
         }
 
-        // POST: Orders/Delete/5
+        // POST: Services/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Order order = db.Orders.Find(id);
-            db.Orders.Remove(order);
-            db.SaveChanges();
+            Services services = await db.Services.FindAsync(id);
+            db.Services.Remove(services);
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

@@ -235,35 +235,29 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\StatisticaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logic\BusinessLogic.cs" />
-    <Compile Include="Migrations\202001220704062_q.cs" />
-    <Compile Include="Migrations\202001220704062_q.Designer.cs">
-      <DependentUpon>202001220704062_q.cs</DependentUpon>
+    <Compile Include="Logic\ForCreateOreder.cs" />
+    <Compile Include="Migrations\202001260529328_InitialCreate.cs" />
+    <Compile Include="Migrations\202001260529328_InitialCreate.Designer.cs">
+      <DependentUpon>202001260529328_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001220722443_q2.cs" />
-    <Compile Include="Migrations\202001220722443_q2.Designer.cs">
-      <DependentUpon>202001220722443_q2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001220730057_q3.cs" />
-    <Compile Include="Migrations\202001220730057_q3.Designer.cs">
-      <DependentUpon>202001220730057_q3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001220752589_q4.cs" />
-    <Compile Include="Migrations\202001220752589_q4.Designer.cs">
-      <DependentUpon>202001220752589_q4.cs</DependentUpon>
+    <Compile Include="Migrations\202001260535078_firs.cs" />
+    <Compile Include="Migrations\202001260535078_firs.Designer.cs">
+      <DependentUpon>202001260535078_firs.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppContext.cs" />
     <Compile Include="Models\Client.cs" />
-    <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Interface\IServiceView.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\ServiceOrder.cs" />
-    <Compile Include="Models\Services.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="Models\SortStatecs.cs" />
+    <Compile Include="Logic\Statistic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -311,11 +305,6 @@
     <Content Include="Views\Clients\Details.cshtml" />
     <Content Include="Views\Clients\Edit.cshtml" />
     <Content Include="Views\Clients\Index.cshtml" />
-    <Content Include="Views\Orders\Create.cshtml" />
-    <Content Include="Views\Orders\Delete.cshtml" />
-    <Content Include="Views\Orders\Details.cshtml" />
-    <Content Include="Views\Orders\Edit.cshtml" />
-    <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />
@@ -326,9 +315,16 @@
     <Content Include="Views\Services\Details.cshtml" />
     <Content Include="Views\Services\Edit.cshtml" />
     <Content Include="Views\Services\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Statistica\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\View\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -344,17 +340,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001220704062_q.resx">
-      <DependentUpon>202001220704062_q.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001260529328_InitialCreate.resx">
+      <DependentUpon>202001260529328_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001220722443_q2.resx">
-      <DependentUpon>202001220722443_q2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001220730057_q3.resx">
-      <DependentUpon>202001220730057_q3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001220752589_q4.resx">
-      <DependentUpon>202001220752589_q4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001260535078_firs.resx">
+      <DependentUpon>202001260535078_firs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

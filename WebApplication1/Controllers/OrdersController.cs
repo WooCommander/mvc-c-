@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -13,32 +14,22 @@ namespace WebApplication1.Controllers
     public class OrdersController : Controller
     {
         private MyAppContext db = new MyAppContext();
-        public class ForCreate {
-            public ForCreate(Order or, Client cl)
-            {
-                order = or;
-                client = cl;
-            }
-            public Order order;
-            public Client client;
-        }
 
-        private ForCreate forCreate;
         // GET: Orders
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var orders = db.Orders.Include(p => p.Client).Include(p => p.Employee);
-            return View(orders.ToList());
+            var orders = db.Orders.Include(o => o.Client).Include(o => o.Employee).Include(o => o.Service);
+            return View(await orders.ToListAsync());
         }
 
         // GET: Orders/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
+            Order order = await db.Orders.FindAsync(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -49,11 +40,9 @@ namespace WebApplication1.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            //forCreate = new ForCreate (db.Orders,db.Cli );
-            SelectList clients = new SelectList(db.Clients, "Id", "FIO");
-            SelectList emp = new SelectList(db.Employees, "Id", "FIO");
-            ViewBag.Employees = emp;
-            ViewBag.Clients = clients;
+            ViewBag.ClientId = new SelectList(db.Clients, "Id", "FIO");
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "FIO");
+            ViewBag.ServiceId = new SelectList(db.Services, "Id", "Name");
             return View();
         }
 
@@ -62,30 +51,36 @@ namespace WebApplication1.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Number,NumberOrder,NameOrder,DateOrder,IdEmployee,IdClient,Srok")] Order order)
+        public async Task<ActionResult> Create([Bind(Include = "Id,DateOrder,ClientId,EmployeeId,ServiceId")] Order order)
         {
             if (ModelState.IsValid)
             {
                 db.Orders.Add(order);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ClientId = new SelectList(db.Clients, "Id", "FIO", order.ClientId);
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "FIO", order.EmployeeId);
+            ViewBag.ServiceId = new SelectList(db.Services, "Id", "Name", order.ServiceId);
             return View(order);
         }
 
         // GET: Orders/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
+            Order order = await db.Orders.FindAsync(id);
             if (order == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.ClientId = new SelectList(db.Clients, "Id", "FIO", order.ClientId);
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "FIO", order.EmployeeId);
+            ViewBag.ServiceId = new SelectList(db.Services, "Id", "Name", order.ServiceId);
             return View(order);
         }
 
@@ -94,25 +89,28 @@ namespace WebApplication1.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Number,NumberOrder,NameOrder,DateOrder,IdEmployee,IdClient,Srok")] Order order)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,DateOrder,ClientId,EmployeeId,ServiceId")] Order order)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(order).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.ClientId = new SelectList(db.Clients, "Id", "FIO", order.ClientId);
+            ViewBag.EmployeeId = new SelectList(db.Employees, "Id", "FIO", order.EmployeeId);
+            ViewBag.ServiceId = new SelectList(db.Services, "Id", "Name", order.ServiceId);
             return View(order);
         }
 
         // GET: Orders/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
+            Order order = await db.Orders.FindAsync(id);
             if (order == null)
             {
                 return HttpNotFound();
@@ -123,11 +121,11 @@ namespace WebApplication1.Controllers
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Order order = db.Orders.Find(id);
+            Order order = await db.Orders.FindAsync(id);
             db.Orders.Remove(order);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

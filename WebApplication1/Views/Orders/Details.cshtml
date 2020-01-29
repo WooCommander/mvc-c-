@@ -2,56 +2,17 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Информация о заказе</h2>
+<h2>Details</h2>
 
 <div>
-    
+    <h4>Order</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-          Номер
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Number)
-        </dd>
-
-        <dt>
-            Номер заказа
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumberOrder)
-        </dd>
-
-        <dt>
-           Наименование услуги
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NameOrder)
-        </dd>
-
-        <dt>
-            Дата заказа
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateOrder)
-        </dd>
-
-        <dt>
-           ФИО работника
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Employee.FIO)
-        </dd>
-
-        <dt>
-            ФИО клеинта
+            @Html.DisplayNameFor(model => model.Client.FIO)
         </dt>
 
         <dd>
@@ -59,16 +20,32 @@
         </dd>
 
         <dt>
-            Цена
+            @Html.DisplayNameFor(model => model.Employee.FIO)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Srok)
+            @Html.DisplayFor(model => model.Employee.FIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Service.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOrder)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Изменить", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Назад", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

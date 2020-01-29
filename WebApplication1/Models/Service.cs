@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppStart.model
 {
-  public  class Employee
-    {
+   public class Service
+   {
         public int Id { get; set; }
-        public string FIO { get; set; }
-        public string Adres { get; set; }
-        public int Tel { get; set; }
-        public int NumberOrder { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
 
         public ICollection<Order> Orders { get; set; }
-        public Employee()
+        public Service()
         {
             Orders = new List<Order>();
         }

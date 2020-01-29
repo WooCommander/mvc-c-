@@ -10,6 +10,7 @@ namespace WebApplication1.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "ConsoleAppStart.model.MyAppContext";
         }
 
         protected override void Seed(ConsoleAppStart.model.MyAppContext context)

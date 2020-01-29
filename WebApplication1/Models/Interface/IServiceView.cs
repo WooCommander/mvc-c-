@@ -8,8 +8,8 @@ namespace WebApplication1.Models
 {
   public  interface IServiceView
     {
-        public String Name { get; set; }
-        public int Count { get; set; }
+         String Name { get; set; }
+         int Count { get; set; }
 
     }
 }
